@@ -7,3 +7,14 @@
   - name: update repository index
     apt:
       update_cache: yes
+
+- hosts: docker
+  become: true
+  tasks:
+
+  - name: update docker containers
+    community.general.docker_compose:
+      project_src: /mnt/docker/multimedia
+      pull: yes
+      build: no
+
