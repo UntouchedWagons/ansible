@@ -1,2 +1,2 @@
-# ansible
-Ansible playbooks for managing local servers
+# Ansible
+Ansible playbooks for managing my local servers
