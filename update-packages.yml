@@ -70,3 +70,11 @@
       project_src: /mnt/docker/wireguard
       pull: yes
       build: no
+
+  - name: Prune everything
+    community.docker.docker_prune:
+      containers: yes
+      images: yes
+      networks: yes
+      volumes: yes
+      builder_cache: yes

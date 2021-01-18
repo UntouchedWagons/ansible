@@ -1,0 +1,37 @@
+---
+ 
+- hosts: gluster-test
+  become: true
+  tasks:
+
+  - name: Create new VM with minimal options
+    community.general.proxmox_kvm:
+      api_user: root@pam
+      api_token_id: test-token
+      api_token_secret: f639d06e-e7d8-4060-93c2-a0299fad0dc0
+      api_host: gluster-test
+      name: test-vm
+      node: gluster-test
+      acpi: yes
+      agent: yes
+      autostart: no
+      balloon: 0
+      ostype: l26
+      state: stopped
+      vga: std
+      bios: seabios
+      ciuser: jordan
+      kvm: yes
+      cpu: host
+      nameservers: 192.168.0.2
+      searchdomains: 'jordanbradley.site'
+      ide:
+        ide2: 'local:cloudinit,format=qcow2'
+      sshkeys: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTAflaiRTKtI1qM+X97YJ3F9uNwQozwL6ByvXOUAkqc jordanbradley@fastmail.fm'
+      net:
+        net0: 'virtio,bridge=vmbr0'
+      ipconfig:
+        ipconfig0: 'ip=192.168.0.28/24,gw=192.168.0.2'
+      virtio:
+        virtio0: 'local-zfs:10'
+      cores: 2
