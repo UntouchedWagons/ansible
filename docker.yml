@@ -1,0 +1,59 @@
+---
+- hosts: docker
+  become: true
+  tasks:
+    - name: Get OS release codename.
+      command: lsb_release -cs
+      register: release_codename
+
+    - name: Uninstall any old versions of Docker.
+      apt:
+        name:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+        state: absent
+
+    - name: Add Docker GPG apt key.
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+
+    - name: Add Docker APT Repository.
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ release_codename.stdout }} stable
+        state: present
+
+    - name: Install docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: latest
+        update_cache: true
+
+      get_url:
+        url : https://github.com/docker/compose/releases/download/1.26.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x,g+x,o+x'
+
+    - name: Add docker-compose command completion.
+      get_url:
+        url : https://raw.githubusercontent.com/docker/compose/1.26.2/contrib/completion/bash/docker-compose
+        dest: /etc/bash_completion.d/docker-compose
+
+    - name: Start and enable Docker systemd service.
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+        daemon_reload: true
+
+    - name: Add user to docker group.
+      user:
+        name: jordan
+        groups: docker
+        append: true
