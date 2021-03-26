@@ -1,7 +1,7 @@
 ---
  
 - hosts: docker
-  become: true
+  become: false
   tasks:
 
   - name: update docker containers in multimedia stack
@@ -52,9 +52,9 @@
       pull: yes
       build: no
 
-  - name: update docker containers in wireguard stack
+  - name: update docker containers in tdarr stack
     community.general.docker_compose:
-      project_src: /mnt/docker/wireguard
+      project_src: /mnt/docker/tdarr
       pull: yes
       build: no
 
