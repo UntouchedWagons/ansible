@@ -6,67 +6,43 @@
 
   - name: update docker containers in multimedia stack
     community.general.docker_compose:
-      project_src: /mnt/docker/multimedia
+      project_src: /docker/multimedia
       pull: yes
       build: no
 
   - name: update docker containers in bitwarden stack
     community.general.docker_compose:
-      project_src: /mnt/docker/bitwarden
-      pull: yes
-      build: no
-
-  - name: update docker containers in grafana stack
-    community.general.docker_compose:
-      project_src: /mnt/docker/grafana
-      pull: yes
-      build: no
-
-  - name: update docker containers in openspeedtest stack
-    community.general.docker_compose:
-      project_src: /mnt/docker/openspeedtest
-      pull: yes
-      build: no
-
-  - name: update docker containers in scrutiny stack
-    community.general.docker_compose:
-      project_src: /mnt/docker/scrutiny
-      pull: yes
-      build: no
-
-  - name: update docker containers in telegraf stack
-    community.general.docker_compose:
-      project_src: /mnt/docker/telegraf
+      project_src: /docker/bitwarden
       pull: yes
       build: no
 
   - name: update docker containers in ubooquity stack
     community.general.docker_compose:
-      project_src: /mnt/docker/ubooquity
-      pull: yes
-      build: no
-
-  - name: update docker containers in unifi-controller stack
-    community.general.docker_compose:
-      project_src: /mnt/docker/unifi-controller
+      project_src: /docker/ubooquity
       pull: yes
       build: no
 
   - name: update docker containers in tdarr stack
     community.general.docker_compose:
-      project_src: /mnt/docker/tdarr
+      project_src: /docker/tdarr
       pull: yes
       build: no
 
   - name: update docker containers in portainer stack
     community.general.docker_compose:
-      project_src: /mnt/docker/portainer
+      project_src: /docker/portainer
+      pull: yes
+      build: no
+
+  - name: update docker containers in duplicati stack
+    community.general.docker_compose:
+      project_src: /docker/duplicati
       pull: yes
       build: no
 
   - name: update docker containers in wikijs stack
     community.general.docker_compose:
-      project_src: /mnt/docker/wikijs
+      project_src: /docker/wikijs
       pull: yes
       build: no
 
